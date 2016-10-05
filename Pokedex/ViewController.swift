@@ -7,20 +7,26 @@
 //
 
 import UIKit
+import AVFoundation
 
 // Delegate, datasource, delegateflowlayoutwhatever
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
 {
 	@IBOutlet weak var pokemonCollectionView: UICollectionView!
 
+	private var pokemon = [Pokemon]()
+	private var musicPlayer: AVAudioPlayer!
+	
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
 		
+		parsePokemonCSV()
+		
 		pokemonCollectionView.dataSource = self
 		pokemonCollectionView.delegate = self
 		
-		//pokemonCollectionView.size
+		initAudio()
 	}
 
 	override func didReceiveMemoryWarning()
@@ -33,9 +39,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 	{
 		if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pokemonCell", for: indexPath) as? PokemonCell
 		{
-			let pokemon = Pokemon(id: indexPath.row, name: "Pokemon")
-			cell.setContent(pokemon: pokemon)
-			
+			cell.setContent(pokemon[indexPath.row])
 			return cell
 		}
 		else
@@ -51,19 +55,69 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 	
 	func numberOfSections(in collectionView: UICollectionView) -> Int
 	{
-		// TODO
 		return 1
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
 	{
-		// TODO
-		return 30
+		return pokemon.count
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
 	{
 		return CGSize(width: 96, height: 96)
+	}
+	
+	@IBAction func musicButtonPressed(_ sender: UIButton)
+	{
+		if musicPlayer.isPlaying
+		{
+			musicPlayer.pause()
+			sender.alpha = 0.2
+		}
+		else
+		{
+			musicPlayer.play()
+			sender.alpha = 1.0
+		}
+	}
+	
+	private func initAudio()
+	{
+		let path = Bundle.main.path(forResource: "pokemonMusic", ofType: "mp3")
+		do
+		{
+			musicPlayer = try AVAudioPlayer(contentsOf: URL(string: path!)!)
+			musicPlayer.prepareToPlay()
+			musicPlayer.numberOfLoops = -1
+			musicPlayer.play()
+		}
+		catch
+		{
+			print(error)
+		}
+	}
+	
+	private func parsePokemonCSV()
+	{
+		let path = Bundle.main.path(forResource: "pokemon", ofType: "csv")
+		do
+		{
+			let csv = try CSV(contentsOfURL: path!)
+			let rows = csv.rows
+			
+			for row in rows
+			{
+				let id = Int(row["id"]!)!
+				let name = row["identifier"]!
+				
+				pokemon.append(Pokemon(id: id, name: name))
+			}
+		}
+		catch
+		{
+			fatalError()
+		}
 	}
 }
 

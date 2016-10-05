@@ -20,7 +20,7 @@ class PokemonCell: UICollectionViewCell
 		layer.cornerRadius = 5.0
 	}
 	
-	func setContent(pokemon: Pokemon)
+	func setContent(_ pokemon: Pokemon)
 	{
 		thumbImageView.image = UIImage(named: "\(pokemon.id)")
 		nameLabel.text = pokemon.name.capitalized
