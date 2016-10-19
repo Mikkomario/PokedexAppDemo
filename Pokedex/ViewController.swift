@@ -57,7 +57,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
 	{
-		// TODO: Implement
+		let pokemon = displayedPokemon[indexPath.row]
+		performSegue(withIdentifier: "ShowPokemonDetail", sender: pokemon)
 	}
 	
 	func numberOfSections(in collectionView: UICollectionView) -> Int
@@ -98,6 +99,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
 	{
 		view.endEditing(true)
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+	{
+		// Sets the pokemon for the pokemon detail vc
+		if segue.identifier == "ShowPokemonDetail"
+		{
+			if let detailsVC = segue.destination as? PokemonDetailVC, let pokemon = sender as? Pokemon
+			{
+				detailsVC.pokemon = pokemon
+			}
+		}
 	}
 	
 	@IBAction func musicButtonPressed(_ sender: UIButton)
