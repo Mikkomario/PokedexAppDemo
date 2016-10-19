@@ -13,10 +13,20 @@ struct Pokemon
 {
 	let name: String
 	let id: Int
+	let description: String
+	let primaryType: Type
+	let secondaryType: Type?
+	let abilities: [Ability]
+	let baseStats: [Stat : Int]
 	
-	init(id: Int, name: String)
+	init(id: Int, name: String, description: String, abilities: [Ability], baseStats: [Stat : Int], type1: Type, type2: Type? = nil)
 	{
 		self.id = id
 		self.name = name
+		self.description = description
+		self.primaryType = type1
+		self.secondaryType = type2
+		self.abilities = abilities
+		self.baseStats = baseStats
 	}
 }

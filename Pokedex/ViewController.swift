@@ -156,7 +156,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 				let id = Int(row["id"]!)!
 				let name = row["identifier"]!
 				
-				pokemon.append(Pokemon(id: id, name: name))
+				pokemon.append(Pokemon(id: id, name: name, description: "", abilities: [], type1: .normal))
 			}
 		}
 		catch

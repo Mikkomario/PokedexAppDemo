@@ -11,7 +11,11 @@ import UIKit
 class PokemonDetailVC: UIViewController
 {
 	@IBOutlet weak var nameLabel: UILabel!
+	@IBOutlet weak var descriptionView: UITextView!
 	
+	@IBOutlet weak var secondaryTypeLabel: UILabel!
+	@IBOutlet weak var primaryTypeLabel: UILabel!
+	@IBOutlet weak var pokemonImageView: UIImageView!
 	var pokemon: Pokemon!
 	
     override func viewDidLoad()
@@ -21,6 +25,8 @@ class PokemonDetailVC: UIViewController
 		nameLabel.text = pokemon.name
     }
 
+	@IBAction func backButtonPressed(_ sender: UIButton) {
+	}
     /*
     // MARK: - Navigation
 
