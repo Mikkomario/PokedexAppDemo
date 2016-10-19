@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Type
+enum Type: String
 {
 	case water
 	case fire

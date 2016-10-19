@@ -12,20 +12,33 @@ class PokemonDetailVC: UIViewController
 {
 	@IBOutlet weak var nameLabel: UILabel!
 	@IBOutlet weak var descriptionView: UITextView!
-	
 	@IBOutlet weak var secondaryTypeLabel: UILabel!
 	@IBOutlet weak var primaryTypeLabel: UILabel!
 	@IBOutlet weak var pokemonImageView: UIImageView!
+	
 	var pokemon: Pokemon!
 	
     override func viewDidLoad()
 	{
         super.viewDidLoad()
 
-		nameLabel.text = pokemon.name
+		nameLabel.text = pokemon.name.capitalized
+		pokemonImageView.image = pokemon.image
+		
+		// Downloads pokemon data if necessary, updates the UI afterwards
+		pokemon.preparePokemonInfo()
+		{
+			info in
+			
+			descriptionView.text = info.description
+			primaryTypeLabel.text = info.primaryType.rawValue
+			secondaryTypeLabel.text = info.secondaryType?.rawValue
+		}
     }
 
-	@IBAction func backButtonPressed(_ sender: UIButton) {
+	@IBAction func backButtonPressed(_ sender: UIButton)
+	{
+		dismiss(animated: true, completion: nil)
 	}
     /*
     // MARK: - Navigation
