@@ -196,12 +196,17 @@
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="4" translatesAutoresizingMaskIntoConstraints="NO" id="dy8-gP-yFa">
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="128" id="aeN-OI-xBB"/>
+                                                    <constraint firstAttribute="width" constant="96" id="aeN-OI-xBB">
+                                                        <variation key="heightClass=regular-widthClass=compact" constant="96"/>
+                                                    </constraint>
+                                                    <constraint firstAttribute="height" constant="96" id="xeo-F3-0Jc">
+                                                        <variation key="heightClass=regular-widthClass=compact" constant="112"/>
+                                                    </constraint>
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="SG6-E3-V3q">
                                                 <subviews>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UsA-jh-zOy">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UsA-jh-zOy">
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                         <color key="textColor" red="0.35193062829999999" green="0.33039287769999998" blue="0.27364585949999998" alpha="1" colorSpace="calibratedRGB"/>

@@ -8,6 +8,6 @@
 
 import Foundation
 
-private let URL_BASE = "http://pokeapi.co/api/v2/"
+private let URL_BASE = "http://pokeapi.co/api/v2"
 
 func URL_POKEMON(id: Int) -> String {return "\(URL_BASE)/pokemon/\(id)"}

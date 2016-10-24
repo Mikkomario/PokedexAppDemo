@@ -8,17 +8,17 @@
 
 import Foundation
 
-struct pokemonInfo
+struct PokemonInfo
 {
-	let description: String
+	let descriptions: [String]
 	let primaryType: Type
 	let secondaryType: Type?
-	let abilities: [Ability]
+	let abilities: [(Ability, Bool)] // Ability, is hidden
 	let baseStats: [Stat : Int]
 	
-	init(description: String, abilities: [Ability], baseStats: [Stat : Int], type1: Type, type2: Type? = nil)
+	init(descriptions: [String], abilities: [(Ability, Bool)], baseStats: [Stat : Int], type1: Type, type2: Type? = nil)
 	{
-		self.description = description
+		self.descriptions = descriptions
 		self.primaryType = type1
 		self.secondaryType = type2
 		self.abilities = abilities

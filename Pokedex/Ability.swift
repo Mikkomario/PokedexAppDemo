@@ -10,14 +10,17 @@ import Foundation
 
 struct Ability
 {
+	// All initialised ability values by name
+	static var values = [String : Ability]()
+	
 	let name: String
 	let description: String
-	let hidden: Bool
 	
-	init(name: String, description: String, isHidden: Bool = false)
+	init(name: String, description: String)
 	{
 		self.name = name
 		self.description = description
-		self.hidden = isHidden
+		
+		Ability.values[name] = self
 	}
 }

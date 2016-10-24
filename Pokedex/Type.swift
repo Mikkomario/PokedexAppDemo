@@ -24,4 +24,6 @@ enum Type: String
 	case ice
 	case steel
 	case normal
+	case bug
+	case poison
 }

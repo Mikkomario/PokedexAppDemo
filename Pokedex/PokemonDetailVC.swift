@@ -25,14 +25,25 @@ class PokemonDetailVC: UIViewController
 		nameLabel.text = pokemon.name.capitalized
 		pokemonImageView.image = pokemon.image
 		
+		descriptionView.text = "Retrieving information..."
+		primaryTypeLabel.text = "..."
+		secondaryTypeLabel.text = nil
+		
 		// Downloads pokemon data if necessary, updates the UI afterwards
 		pokemon.preparePokemonInfo()
 		{
 			info in
 			
-			descriptionView.text = info.description
-			primaryTypeLabel.text = info.primaryType.rawValue
-			secondaryTypeLabel.text = info.secondaryType?.rawValue
+			if !info.descriptions.isEmpty
+			{
+				self.descriptionView.text = info.descriptions[Int(arc4random_uniform(UInt32(info.descriptions.count)))]
+			}
+			else
+			{
+				self.descriptionView.text = "No data available"
+			}
+			self.primaryTypeLabel.text = info.primaryType.rawValue
+			self.secondaryTypeLabel.text = info.secondaryType?.rawValue
 		}
     }
 

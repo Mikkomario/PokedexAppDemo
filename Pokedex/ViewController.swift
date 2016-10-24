@@ -135,7 +135,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 			musicPlayer = try AVAudioPlayer(contentsOf: URL(string: path!)!)
 			musicPlayer.prepareToPlay()
 			musicPlayer.numberOfLoops = -1
-			musicPlayer.play()
+			
+			// In the exaple, the player is set on initially, but here it must be set separately (because testing)
+			//musicPlayer.play()
 		}
 		catch
 		{
