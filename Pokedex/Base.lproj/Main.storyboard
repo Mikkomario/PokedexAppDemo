@@ -204,7 +204,7 @@
                                                     </constraint>
                                                 </constraints>
                                             </imageView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="SG6-E3-V3q">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="SG6-E3-V3q">
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UsA-jh-zOy">
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -257,10 +257,10 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="79" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iMg-aH-92c">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="79" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iMg-aH-92c">
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <prototypes>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AbilityCell" rowHeight="79" id="STx-5Q-RSK">
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AbilityCell" rowHeight="79" id="STx-5Q-RSK" customClass="AbilityCell" customModule="Pokedex" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="28" width="343" height="79"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="STx-5Q-RSK" id="CoB-uv-R8e">
@@ -289,15 +289,17 @@
                                                                                         </label>
                                                                                     </subviews>
                                                                                 </stackView>
-                                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="w77-dm-vED">
-                                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="w77-dm-vED">
                                                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                                                    <color key="textColor" red="0.35193062829999999" green="0.33039287769999998" blue="0.27364585949999998" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                                 </textView>
                                                                             </subviews>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="trailing" secondItem="0an-OW-oCp" secondAttribute="trailing" id="K8q-XE-aIl"/>
+                                                                                <constraint firstItem="w77-dm-vED" firstAttribute="top" secondItem="0an-OW-oCp" secondAttribute="bottom" id="PWZ-aP-LVU"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="w77-dm-vED" secondAttribute="bottom" id="Zsk-3K-Iwc"/>
                                                                                 <constraint firstItem="0an-OW-oCp" firstAttribute="leading" secondItem="rXt-RW-fzw" secondAttribute="leading" id="smI-od-8Km"/>
                                                                             </constraints>
                                                                         </stackView>
@@ -309,6 +311,11 @@
                                                                         <constraint firstAttribute="bottomMargin" secondItem="rXt-RW-fzw" secondAttribute="bottom" id="iqM-cm-gVf"/>
                                                                     </constraints>
                                                                 </tableViewCellContentView>
+                                                                <connections>
+                                                                    <outlet property="descriptionTextView" destination="w77-dm-vED" id="mhB-Z9-5rh"/>
+                                                                    <outlet property="isHiddenLabel" destination="nVd-zO-fOw" id="N2I-Sr-VaP"/>
+                                                                    <outlet property="nameLabel" destination="TCE-ae-Tqm" id="AtZ-vH-Kym"/>
+                                                                </connections>
                                                             </tableViewCell>
                                                         </prototypes>
                                                     </tableView>
@@ -331,21 +338,21 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="31" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="v19-g6-1zv">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="31" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="v19-g6-1zv">
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <prototypes>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StatCell" rowHeight="31" id="WOa-xb-0Tp">
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StatCell" rowHeight="31" id="WOa-xb-0Tp" customClass="StatCell" customModule="Pokedex" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="28" width="343" height="31"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WOa-xb-0Tp" id="dXd-bf-H30">
                                                                     <frame key="frameInset" width="343" height="30"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wv5-fx-HdL">
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wv5-fx-HdL">
                                                                             <subviews>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Special Attack" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sll-GC-9LN">
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SpAtt" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sll-GC-9LN">
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="width" constant="128" id="ooO-pd-zFV"/>
+                                                                                        <constraint firstAttribute="width" constant="64" id="ooO-pd-zFV"/>
                                                                                     </constraints>
                                                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                                                     <color key="textColor" red="0.15931773560000001" green="0.15931773560000001" blue="0.15931773560000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -355,7 +362,7 @@
                                                                                     <color key="progressTintColor" red="0.79215686269999996" green="0.14901960780000001" blue="0.015686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <color key="trackTintColor" red="0.83921568629999999" green="0.84313725490000002" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 </progressView>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="112" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Aj-Ji-pPK">
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="112" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Aj-Ji-pPK">
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="64" id="lOF-QD-2sF"/>
                                                                                     </constraints>
@@ -373,6 +380,11 @@
                                                                         <constraint firstItem="wv5-fx-HdL" firstAttribute="leading" secondItem="dXd-bf-H30" secondAttribute="leadingMargin" id="wZf-dX-jDB"/>
                                                                     </constraints>
                                                                 </tableViewCellContentView>
+                                                                <connections>
+                                                                    <outlet property="amountBar" destination="laB-7T-9OB" id="Wyl-Gz-FvV"/>
+                                                                    <outlet property="amountLabel" destination="6Aj-Ji-pPK" id="Ywj-lJ-Zqs"/>
+                                                                    <outlet property="nameLabel" destination="sll-GC-9LN" id="ino-ae-UQ1"/>
+                                                                </connections>
                                                             </tableViewCell>
                                                         </prototypes>
                                                     </tableView>
@@ -397,6 +409,11 @@
                                         </state>
                                     </button>
                                 </subviews>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="bbc-Gi-XS7"/>
+                                    </mask>
+                                </variation>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -411,11 +428,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="abilityTable" destination="iMg-aH-92c" id="irX-7E-kod"/>
                         <outlet property="descriptionView" destination="UsA-jh-zOy" id="yD9-dd-ADD"/>
                         <outlet property="nameLabel" destination="Bbf-8F-QwQ" id="365-WM-dgS"/>
                         <outlet property="pokemonImageView" destination="dy8-gP-yFa" id="OYZ-7u-FnI"/>
                         <outlet property="primaryTypeLabel" destination="v8z-Xk-5g5" id="ofw-47-5S2"/>
                         <outlet property="secondaryTypeLabel" destination="QaO-cb-V3E" id="ipi-FM-Dds"/>
+                        <outlet property="statsTable" destination="v19-g6-1zv" id="9D7-I8-vKF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hTO-tR-aau" userLabel="First Responder" sceneMemberID="firstResponder"/>

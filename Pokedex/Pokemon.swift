@@ -68,7 +68,7 @@ class Pokemon
 				response in
 				
 				print("RESPONSE RECEIVED")
-				if let body = response.result.value as? [String : AnyObject]
+				if let body = response.result.value as? [String : Any]
 				{
 					// Parses the stats first
 					if let statDicts = body["stats"] as? [[String : Any]]
@@ -186,7 +186,7 @@ class Pokemon
 							{
 								if let text = descriptionDict["flavor_text"] as? String
 								{
-									let formattedText = text.replacingOccurrences(of: "\n", with: " ")
+									let formattedText = text.replacingOccurrences(of: "\n", with: " ").replacingOccurrences(of: "\u{0C}", with: " ")
 									if !descriptions.contains(formattedText)
 									{
 										descriptions.append(formattedText)
@@ -235,8 +235,10 @@ class Pokemon
 					
 					if let body = response.result.value as? [String : Any]
 					{
+						print("READING EFFECT ENTRIES")
 						if let effectDicts = body["effect_entries"] as? [[String : Any]]
 						{
+							print("FOUND \(effectDicts.count) ENTRIES")
 							for effectDict in effectDicts
 							{
 								// Only english descriptions are included
@@ -246,7 +248,9 @@ class Pokemon
 									{
 										if let description = effectDict["short_effect"] as? String
 										{
+											print("EFFECT DESC: \(description)")
 											abilities.append((Ability(name: abilityName, description: description), isHidden))
+											break
 										}
 									}
 								}

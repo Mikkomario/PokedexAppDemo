@@ -10,6 +10,8 @@ import UIKit
 
 class PokemonDetailVC: UIViewController
 {
+	@IBOutlet weak var statsTable: UITableView!
+	@IBOutlet weak var abilityTable: UITableView!
 	@IBOutlet weak var nameLabel: UILabel!
 	@IBOutlet weak var descriptionView: UITextView!
 	@IBOutlet weak var secondaryTypeLabel: UILabel!
@@ -17,6 +19,8 @@ class PokemonDetailVC: UIViewController
 	@IBOutlet weak var pokemonImageView: UIImageView!
 	
 	var pokemon: Pokemon!
+	private let abilityDataSource = AbilityTableDS()
+	private let statDataSource = StatTableDS()
 	
     override func viewDidLoad()
 	{
@@ -42,8 +46,20 @@ class PokemonDetailVC: UIViewController
 			{
 				self.descriptionView.text = "No data available"
 			}
-			self.primaryTypeLabel.text = info.primaryType.rawValue
-			self.secondaryTypeLabel.text = info.secondaryType?.rawValue
+			self.primaryTypeLabel.text = info.primaryType.rawValue.capitalized
+			self.secondaryTypeLabel.text = info.secondaryType?.rawValue.capitalized
+			
+			// Sets abilities
+			self.abilityDataSource.abilities = info.abilities
+			self.abilityTable.rowHeight = UITableViewAutomaticDimension
+			self.abilityTable.estimatedRowHeight = 64
+			self.abilityTable.dataSource = self.abilityDataSource
+			self.abilityTable.reloadData()
+			
+			// Sets stats
+			self.statDataSource.stats = info.baseStats
+			self.statsTable.dataSource = self.statDataSource
+			self.statsTable.reloadData()
 		}
     }
 
@@ -60,5 +76,64 @@ class PokemonDetailVC: UIViewController
         // Pass the selected object to the new view controller.
     }
     */
+}
 
+private class AbilityTableDS: NSObject, UITableViewDataSource
+{
+	var abilities = [(Ability, Bool)]()
+	
+	func numberOfSections(in tableView: UITableView) -> Int
+	{
+		return 1
+	}
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+	{
+		return abilities.count
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+	{
+		if let cell = tableView.dequeueReusableCell(withIdentifier: "AbilityCell", for: indexPath) as? AbilityCell
+		{
+			let (ability, hidden) = abilities[indexPath.row]
+			cell.configureCell(ability: ability, isHidden: hidden)
+			return cell
+		}
+		else
+		{
+			fatalError()
+		}
+	}
+}
+
+private class StatTableDS: NSObject, UITableViewDataSource
+{
+	private static let statOrder: [Stat] = [.HP, .Def, .SpDef, .Att, .SpAtt, .Spd]
+	var stats = [Stat : Int]()
+	
+	func numberOfSections(in tableView: UITableView) -> Int
+	{
+		return 1
+	}
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+	{
+		return StatTableDS.statOrder.count
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+	{
+		if let cell = tableView.dequeueReusableCell(withIdentifier: "StatCell", for: indexPath) as? StatCell
+		{
+			let stat = StatTableDS.statOrder[indexPath.row]
+			let amount = stats[stat]
+			cell.configureCell(stat: stat, amount: amount == nil ? 0 : amount!)
+			return cell
+		}
+		else
+		{
+			fatalError()
+		}
+	}
 }

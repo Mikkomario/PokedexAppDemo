@@ -26,4 +26,5 @@ enum Type: String
 	case normal
 	case bug
 	case poison
+	case electric
 }
